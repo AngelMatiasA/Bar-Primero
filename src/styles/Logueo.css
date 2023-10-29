@@ -1,0 +1,158 @@
+.registro{
+    display: flex;  
+    justify-content: center; 
+    flex-wrap: wrap;
+
+}
+
+.registro main {  
+
+display: flex; 
+justify-content: center;
+background-color: #fa0101;
+background: url(../img/fondo4.5..jpg);  
+
+width: 78%; 
+/* height: 90vh; */
+flex-wrap: wrap;
+} 
+
+/* **************************************
+iniicioo de main de registro */
+
+.registro main article {
+/* background-color: #cccfcf70;  */
+margin-top: 4rem; 
+width: 50%; 
+border-radius: 2rem;
+/* padding: 2REM;  */
+display: flex; 
+flex-wrap: wrap; 
+height: fit-content; 
+margin-bottom: 4rem;
+/* height: 200vh; */
+}
+
+.registro main article form{
+
+background: linear-gradient(#f01410b5, rgba(225, 255, 0, 0.596) );
+
+border-radius: 1rem; 
+
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+width: 100%; 
+   
+} 
+
+.registro main article:hover{
+
+background-color: rgba(255, 255, 255, 0.632);
+
+
+
+
+}
+
+.registro main article form  legend{
+text-align: center;
+/* margin-top: 5rem; */
+background-color: #1f39cf;
+background: url(../img/fotor-ai-20231026205348.jpg);  
+padding: 5%; 
+border-radius: 1rem 1rem 0 0; 
+/* width: 100%; */
+font-size: 2.4rem; 
+font-weight: bolder;
+color: crimson;
+font-style: italic;
+
+} 
+
+.registro main article form  legend strong{
+background-color: #f3f3f3d7; 
+border-radius: .2rem;
+}
+
+
+.registro main article form fieldset{
+background-color: rgba(248, 248, 255, 0);
+display: flex; 
+flex-wrap: wrap;
+flex-direction: column;
+margin-top: -1rem;
+padding-top: 0rem;
+padding: 1.5rem;
+
+} 
+
+.registro main article form fieldset label{
+margin-left: 2rem;
+margin-bottom: 1rem;
+font-size: 1.5rem;
+margin-top: 1rem;
+font-weight: bold;
+
+} 
+.registro main article form fieldset legend{
+background: none; 
+font-style: normal; 
+color: #000000;
+}
+
+.registro main article form fieldset label select{
+width: 25%;
+border: solid .1rem;
+font-size: 1rem;
+}
+
+.registro main article form fieldset input{
+margin-left: 1rem; 
+margin-right: 1rem;
+border-bottom: #000000 solid .2rem;
+padding: .5rem;
+font-size: 1.5rem;
+border-radius: .3rem;
+background-color: rgba(245, 245, 245, 0.479);
+
+} 
+
+.registro main article form fieldset input:hover{ 
+background-color: rgba(252, 248, 248, 0.863);
+
+
+
+}
+
+.registro main article form fieldset section input{
+margin-left: 3rem;
+}
+.registro main article form fieldset section label{
+margin-left: -.5rem;
+
+} 
+
+.registro main article form input[type="submit"]{
+background-color: rgba(220, 20, 60, 0.692); 
+width: 27%; 
+justify-content: flex-end;
+margin-left: 60%; 
+padding: 1rem; 
+/* padding-left: -9rem; */
+margin-top: 1rem;
+margin-bottom: 1rem; 
+border-radius: .4rem;
+font-size: 1.5rem;
+
+}
+
+.registro main article form input[type="submit"]:hover{ 
+background-color: rgba(220, 20, 60, 0.918); 
+width: 29%;
+padding: 1.5rem; 
+margin-bottom: 0; 
+/* margin-top: -1rem; */
+
+
+} 

@@ -1,0 +1,11 @@
+.item-box {
+    border-radius: 15px;
+    background-color: #ff5e00;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .item-box:hover {
+    background-color: #FFD700;
+    transform: scale(1.05);
+  }
+  

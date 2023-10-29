@@ -1,0 +1,25 @@
+.ordenes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .orden {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .orden-titulo {
+    color: #333;
+    font-size: 24px;
+  }
+  
+  .alimentos-titulo {
+    color: #666;
+    font-size: 20px;
+  }
+  
+  .alimento {
+    margin-bottom: 10px;
+  }

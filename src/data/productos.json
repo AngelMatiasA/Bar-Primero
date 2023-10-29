@@ -1,0 +1,184 @@
+[
+    {
+        "idAlimento": 1,
+        "nombre": "Milanesa Común",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio" : 1200,
+        "img": "./Imagenes/milaComun.jpg",
+        "categoria" :"Sandwiches",
+        "cantidad": 1
+        
+       
+    },
+    {
+        "idAlimento": 2,
+        "nombre": "Mila Especial",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio": 1400,
+        "img": "./Imagenes/sandwich.png",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+    },
+    {
+        "idAlimento": 3,
+        "nombre": "Mila Doble Comun",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio": 1600,
+        "img": "./Imagenes/MilaDoble.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+        
+    },
+    {
+        "idAlimento": 4,
+        "nombre": "Mila Doble Especial",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio": 1800,
+        "img": "./Imagenes/milaEspecialDoble.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+     
+    },
+    {
+ 
+        "idAlimento": 5,
+        "nombre": "Lomito Comun",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio": 1400,
+        "img": "./Imagenes/lomitoComun.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 6,
+        "nombre": "Lomito Especial",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": null,
+        "precio": 1600,
+        "img": "./Imagenes/lomito.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 7,
+        "nombre": "Napolitana",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": 1,
+        "precio": 1400,
+        "img": "./Imagenes/milaNapo.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 8,
+        "nombre": "Napolitana",
+        "descripcion": null,
+        "idCategoria": 2,
+        "tamanio": 2,
+        "precio": 2200,
+        "img": "./Imagenes/milaNapo.jpg",
+        "categoria": "Sandwiches",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 9,
+        "nombre": "American Burger",
+        "descripcion": "Panceta, Carne, Cheddar, Salsa MyT",
+        "idCategoria": 1,
+        "tamanio": 1,
+        "precio": 1700,
+        "img": "./Imagenes/hamburgerSimple.jpg",
+        "categoria": "Burgers",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 10,
+        "nombre": "American Burger",
+        "descripcion": "Panceta, Carne, Cheddar, Salsa MyT",
+        "idCategoria": 1,
+        "tamanio": 2,
+        "precio": 1900,
+        "img": "./Imagenes/americanDoble.jpg",
+        "categoria": "Burgers",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 11,
+        "nombre": "CheeseBurger",
+        "descripcion": "Queso, Salsa, Barbacia, Medallon Carne",
+        "idCategoria": 1,
+        "tamanio": 1,
+        "precio": 1650,
+        "img": "./Imagenes/chesseSimple.jpg",
+        "categoria": "Burgers",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 12,
+        "nombre": "CheeseBurger",
+        "descripcion": "Queso, Salsa, Barbacia, Medallon Carne",
+        "idCategoria": 1,
+        "tamanio": 2,
+        "precio": 1750,
+        "img": "./Imagenes/chesseDoble.jpg",
+        "categoria": "Burgers",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 13,
+        "nombre": "GoldenBurger",
+        "descripcion": "Panceta 4 fetas queso cheddar ketchup, salsa MyT, Cebolla c/ manteca",
+        "idCategoria": 1,
+        "tamanio": null,
+        "precio": 2100,
+        "img": "./Imagenes/golden.jpg",
+        "categoria": "Burgers",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 14,
+        "nombre": "Medallon Extra Con Queso",
+        "descripcion": null,
+        "idCategoria": 3,
+        "tamanio": null,
+        "precio": 650,
+        "img": "./Imagenes/hamburger.png",
+        "categoria": "Agregados",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 15,
+        "nombre": "Extra Panceta",
+        "descripcion": null,
+        "idCategoria": 3,
+        "tamanio": null,
+        "precio": 400,
+        "img": "./Imagenes/tocino.jpg",
+        "categoria": "Agregados",
+        "cantidad": 1
+      },
+      {
+        "idAlimento": 16,
+        "nombre": "Papas Fritas Clasicas",
+        "descripcion": null,
+        "idCategoria": 3,
+        "tamanio": null,
+        "precio": 1000,
+        "img": "./Imagenes/papas.jpg",
+        "categoria": "Agregados",
+        "cantidad": 1
+      }
+]
+  

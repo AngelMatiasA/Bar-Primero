@@ -1,0 +1,65 @@
+
+.boton-confirmar-carrito {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilo cuando se presiona el botón */
+  .boton-confirmar-carrito:active {
+    background-color: #2e86c1;
+  }
+  /* 77777777777777777777777777777777777777777777777 */
+  table {
+    background: #d2a23b;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+  }
+  
+  thead {
+    background-color: #f8f8f8;
+  }
+  
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .boton-carrito {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+  }
+  
+  p {
+    text-align: right;
+    padding-right: 15px;
+  }
+  /* 77777777777777777777777777777777777 */
+  #total {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+  }
+  
+  #total p, #total h4 {
+    margin: 0;
+  }
+  
+ /*  .div-total{
+    background: #d2a23b;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    
+  } */

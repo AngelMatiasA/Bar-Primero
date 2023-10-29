@@ -1,0 +1,105 @@
+#order-title, #backpack-icon {
+  cursor: pointer;
+}
+
+#dropdown-content {
+  display: none;
+  position: absolute;
+  overflow-y: auto;
+  max-height: 1px; /* Inicialmente oculto */
+  background-color: rgb(233, 192, 104); /* Fondo blanco */
+  color: black; /* Letras negras */
+  transition: max-height 0.3s ease-in-out; /* Despliegue de arriba a abajo en 0.30 segundos */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+#dropdown-content p {
+  border-bottom: 1px solid orange; /* Borde inferior de cada elemento en color naranja */
+}
+
+#order-title:hover + #dropdown-content,
+#backpack-icon:hover + #dropdown-content,
+#dropdown-content:hover {
+  display: block;
+  max-height: calc(6 * 2.5em); /* Ajusta esto según cuántos elementos quieras mostrar antes de hacer scroll. Aquí se asume que cada elemento tiene una altura de 1.5em */
+}
+
+#order-title.active + #dropdown-content,
+#backpack-icon.active + #dropdown-content {
+  display: block;
+  max-height: calc(6 * 1.5em);
+}
+
+
+/* //////////////////////////////////////// */
+.cotenedor-nav {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list li {
+  display: flex;
+  align-items: center; /* Alinea el contenido verticalmente */
+  justify-content: space-between; /* Distribuye el espacio de manera uniforme entre los elementos */
+  margin-right: 20px; /* Ajusta este valor para agregar espacio entre los elementos */
+}
+
+nav {
+  background-color: #333;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+nav li {
+  flex-grow: 1;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #111;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown-content p {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content p:hover {background-color: #717171;}
+
+.nav li:hover .dropdown-content {display: block;}
+  
+  

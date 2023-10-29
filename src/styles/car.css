@@ -1,0 +1,89 @@
+.compra {
+    background-color: #DAA520;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .galeria {
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  
+  .header-carrito{
+   background-color: antiquewhite;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 9;
+   height: 8vh;
+  }
+  
+  .card {
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   padding: 2rem;
+   background-color: #FF8C00;
+   border-radius: 10px;
+   box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .card button {
+   align-self: center;
+  }
+  
+  .carrito {
+   display: flex;
+   flex-direction: column;
+   position: absolute;
+   position: fixed;
+   top: 1;
+   right: 0;
+   justify-content: center;
+   align-items: center;
+   padding: .5rem;
+   border: red solid 5px;
+   background: rgb(186, 147, 92);
+   z-index:10; 
+  }
+
+  .item-carrito {
+    background-color: greenyellow;
+    font-weight: 800;
+   display: flex;
+   justify-content: space-between;
+  }
+  .boton-carrito{
+    z-index: 15;
+  }
+  #btn-precio{
+    background-color: rgb(0, 220, 0);
+    font-weight: 800;
+    text-align: center;
+    width: 3rem;
+    padding: .8rem;
+    text-align: center;
+    border-radius: 8px;
+    border: solid .2rem;
+    margin: 6px;
+  }
+  #btn-precio:hover{
+    background-color: rgb(0, 124, 0);
+    color: white;
+    border: solid whitesmoke .2rem;
+  }
+  #cambiarPrecio{
+    margin: auto;
+    width: 70%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 4px;
+    font-weight: 700;
+    border-radius: 5px;
+  }

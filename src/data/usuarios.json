@@ -1,0 +1,22 @@
+ [{
+    "usuario": {
+      "idUsuario": 1,
+      "nombre": "Pedro Lino",
+      "direccion": "Calle Falsa 123",
+      "mail": "juan.perez@example.com",
+      "celular": "+541122334455",
+      "password":"jose2",
+      "admin":false
+    }
+  },
+  {
+    "usuario": {
+      "idUsuario": 1,
+      "nombre": "Juan Pérez",
+      "direccion": "Calle Falsa 123",
+      "mail": "juan.perez@example.com",
+      "celular": "+541122334455",
+      "password":"chelo1",
+      "admin":true
+    }
+  }]
