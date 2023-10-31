@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link, useNavigate} from 'react-router-dom';
 import '../styles/car.css';
 import Cookies from 'universal-cookie';
 
@@ -18,6 +19,7 @@ function Carrito() {
   const [alimentos, setAlimentos] = useState([]);
   const [carrito, setCarrito] = useState([]);
   const [mostrarCarrito, setMostrarCarrito] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchMenu(setAlimentos);
@@ -49,7 +51,9 @@ function Carrito() {
   const confirmarPedido = async () => {
     let total = carrito.reduce((acc, curr) => acc + curr.precio_subTotal, 0);
     let pedido = {
-      idUsuario: 1,
+      idUsuario: cookies.get('idUsuario'),
+    
+      comprobanteImg: "",
       total: total,
       alimentos: carrito.map(alimento => ({
         idAlimento: alimento.idAlimento,
@@ -59,14 +63,10 @@ function Carrito() {
       }))
     };
     
-    try {
-      await axios.post('https://www.mytbrendabar.somee.com/api/Ordenes/Guardar', pedido);
-      alert('Pedido confirmado!');
-      setCarrito([]);
-    } catch (err) {
-      console.error(err);
-    }
+    navigate('/confirmar', { state: { pedido } });
+
   };
+
   var admin = cookies.get('esAdmin');
   if(cookies.get("esAdmin") == true){
     var sies = "es admin"
@@ -75,6 +75,9 @@ function Carrito() {
   }
 
   return (
+    <>
+    <h3>Bienvenido {cookies.get("nombre")}</h3>
+
     <div className="compra">
          
       
@@ -87,14 +90,14 @@ function Carrito() {
             {carrito.map((alimento, index) => (
               <div key={index} className="item-carrito">
                 <span>{alimento.nombre} x {alimento.cantidad}</span>
-                <span>Subtotal: {alimento.precio_subTotal}</span>
+                <span>Subtotal: $ {alimento.precio_subTotal}</span>
                 <button onClick={() => quitarDelCarrito(index)}>
                   Quitar
                 </button>
               </div>
             ))}
-            <div>Total: {carrito.reduce((acc, curr) => acc + curr.precio_subTotal, 0)}</div>
-            <button onClick={confirmarPedido}>
+            <div>Total: $ {carrito.reduce((acc, curr) => acc + curr.precio_subTotal, 0)}</div>
+            <button id="btn-confirmar" onClick={confirmarPedido}>
               Confirmar pedido
             </button>
           </div>
@@ -104,11 +107,13 @@ function Carrito() {
         {alimentos.map((alimento) => (
           <div className="card" key={alimento.idAlimento}>
             <h2>{alimento.nombre}</h2>
+            <figure>
+              {/* <img src={alimento.img} alt="" /> */}
+
+            </figure>
+            {/* <img src={alimento.img} alt="" /> */}
             <p>{alimento.descripcion}</p>
-            <p>{alimento.precio}</p>
-            <p>{admin}</p>
-            <h3>{cookies.get("nombre")}</h3>
-            <h3>{sies}</h3>
+            <p>${alimento.precio}</p>
           
             <button onClick={() => agregarAlCarrito(alimento)}>
               Agregar al carrito
@@ -117,6 +122,7 @@ function Carrito() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

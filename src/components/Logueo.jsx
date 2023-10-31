@@ -22,6 +22,7 @@ const Logueo = () => {
         if (response.data.respones.length > 0) {
           alert('usuario y la contraseña correctos');
           const usuario = response.data.respones[0];
+          cookies.set('idUsuario', usuario.id);
           cookies.set('nombre', usuario.nombre);
           cookies.set('mail', usuario.mail);
           cookies.set('contrasenia', usuario.contrasenia);
@@ -38,22 +39,25 @@ const Logueo = () => {
         console.error("Hubo un error al iniciar sesión: ", error);
       });
   };
+  function manejadorSubmit(e) {
+    e.preventDefault();
+    iniciarSesion();
+  }
 
   return (
     <div className='registro'>
       <main id="contenido">
         <article>
-          <form id="registro" className="form1">
+          <form id="registro" className="form1" onSubmit={manejadorSubmit}>
             <fieldset>
               <legend>Formulario de suscripcion</legend>
               <label htmlFor="mail">Mail: </label> 
               <input type="email" id="mail" name="mail" onChange={handleChange}/> 
               <label htmlFor="contraseña">Contraseña: </label> 
               <input type="password" id="contraseña" name="contra" onChange={handleChange}/> 
-              <FireBaseImageUpload carpetaNom="prueba"/>
             </fieldset>
-            <button type="button" onClick={iniciarSesion}>Inicio</button>
-            <input type="submit" className="fadeIn fourth" value="Log In" />
+            {/* <button type="button" onClick={iniciarSesion}>Inicio</button> */}
+            <input type="submit" className="fadeIn fourth" value="Ingresar" />
             <Link to="/registro">
               <input
                 type="button"

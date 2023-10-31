@@ -21,33 +21,9 @@ function NavAdmin() {
         <li>
         <h2>Store</h2>
         </li>
-
-        <li>
-          {usuarioMenu.length === 0 ? (
-            <Link to={"/login"}>
-              {" "}
-              <p>logueate</p>
-            </Link>
-          ) : (
-            <>
-              <li>{usuarioMenu.usuario.nombre}</li>
-              <button onClick={ManejadorBoton}>cerrar secion</button>
-            </>
-          )}
-        </li>
         <li>
               <Link to={"/logueo"}>
                 <h2>Logueo</h2>
-              </Link>
-        </li>
-        <li>
-              <Link to={"/foto"}>
-                <h2>foto</h2>
-              </Link>
-        </li>
-        <li>
-              <Link to={"/pedidos"}>
-                <h2>pedidos</h2>
               </Link>
         </li>
         <li>
@@ -63,6 +39,11 @@ function NavAdmin() {
         <li>
               <Link to={"/carrito"}>
                 <h2>carrito</h2>
+              </Link>
+        </li>
+        <li>
+              <Link to={"/cerrar"}>
+                <h2>Cerrar Sesion</h2>
               </Link>
         </li>
       </ul>

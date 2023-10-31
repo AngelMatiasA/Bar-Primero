@@ -60,11 +60,7 @@ function NavNormal() {
                 </Link>
               </li>
               
-              <li>
-                <Link to={"/login"}>
-                  <h2>Login</h2>
-                </Link>
-              </li>
+              
               <li>
                 <Link to={"/logueo"}>
                   <h2>Logueo</h2>
@@ -86,42 +82,8 @@ function NavNormal() {
                   </Link>
                 )}
               </li>
-              <li>
-                {usuarioMenu.length === 0 ? (
-                  <Link to={"/login"}>
-                    {" "}
-                    <h2>logueate</h2>
-                  </Link>
-                ) : (
-                  <>
-                  <h2>{usuarioMenu.nombre}</h2>
-                    <button onClick={ManejadorBoton}>cerrar secion</button>
-                  </>
-                )}
-              </li>
-              <li>
-                {Pedido.length === 0 ? (
-                  <>
-                    <h2>no hay nda</h2>
-                  </>
-                ) : (
-                  <>
-                   
-                    <div id="backpack-icon" class="dropbtn">
-                    <h4 id="order-title">Tu Orden bb</h4>
-                      <FcShipped />
-                    </div>
-                    <div id="dropdown-content">
-                      {Pedido.map((item) => (
-                        <p key={item.idAlimento}>
-                          {item.nombre}  <br />
-                          cant:{item.quantity}
-                        </p>
-                      ))}
-                    </div>
-                  </>
-                )}
-              </li>
+             
+            
             </ul>
           </nav>
         </>

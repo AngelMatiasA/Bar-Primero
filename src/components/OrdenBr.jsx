@@ -20,9 +20,16 @@ function OrdenBr() {
   
     async function fetchMenu() {
       try {
-        const res = await axios.get('https://www.mytbrendabar.somee.com/api/Ordenes/ObtenerPedidos');
+        const res = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/Pendientes');
         setDatos(res.data.respones);
-        setEstadoOrdenes(res.data.respones.map(() => "pendiente"));
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    async function fetchMenuConfirmadas() {
+      try {
+        const res = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/Confirmados');
+        setOrdenesRealizadas(res.data.respones);
       } catch (err) {
         console.error(err);
       }
@@ -30,15 +37,13 @@ function OrdenBr() {
   
     useEffect(() => {
       fetchMenu();
+      fetchMenuConfirmadas();
     }, []);
 
   const cambiarEstado = (index) => {
     const nuevosEstados = [...estadoOrdenes];
     nuevosEstados[index] = "realizada";
     setEstadoOrdenes(nuevosEstados);
-
-    const nuevaOrdenRealizada = datos.ordenes[index];
-    setOrdenesRealizadas([...ordenesRealizadas, nuevaOrdenRealizada]);
 
     const nuevasOrdenes = datos.ordenes.filter((orden, i) => i !== index);
     setDatos({ ...datos, ordenes: nuevasOrdenes });
@@ -47,7 +52,6 @@ function OrdenBr() {
     setEstadoOrdenes(nuevosEstadosFiltrados);
 
     // Llamar a la función para actualizar el estado en el servidor
-    actualizarEstadoEnServidor(nuevaOrdenRealizada.idPedido, 2);
   };
 
   const cancelarOrden = (index) => {
@@ -95,9 +99,11 @@ function OrdenBr() {
                 {datos && datos && datos.map((orden, index) => (
                     <div key={orden.idPedido}>
                         <h4>Cliente: {orden.nombreCliente}</h4>
-                        <p>Estado: {estadoOrdenes[index]}</p>
+                        <p>Estado: {orden.idestado}</p>
                         <p>Dirección: {orden.direccion}</p>
                         <p>Celular: {orden.celular}</p>
+                        <p>foto</p>
+                        <img src={orden.comprobanteImg} alt="" />
                         <h4>Detalles de la orden: </h4>
                         {orden.alimentos.map((alimento) => (
                             <div key={alimento.idAlimento}>
@@ -122,19 +128,30 @@ function OrdenBr() {
         <div className="column">
             <div className="ordenes-realizadas">
                 <h2>Órdenes realizadas:</h2>
-                {ordenesRealizadas.map((orden) => (
+                {ordenesRealizadas.map((orden, index) => (
                     <div key={orden.idPedido}>
-                        <h4>Cliente: {orden.nombre}</h4>
+                        <h4>Cliente: {orden.nombreCliente}</h4>
+                        <p>Estado: {orden.idestado}</p>
                         <p>Dirección: {orden.direccion}</p>
                         <p>Celular: {orden.celular}</p>
-                        {/* Detalles de la orden */}
+                        <p>foto</p>
+                        <img src={orden.comprobanteImg} alt="" />
+                        <h4>Detalles de la orden: </h4>
                         {orden.alimentos.map((alimento) => (
                             <div key={alimento.idAlimento}>
                                 <h4>{alimento.nombre}</h4>
                                 <p>Cantidad: {alimento.cantidad}</p>
-                                <p>Precio: ${alimento.precio}</p>
+                                <p>Precio: ${alimento.precio_subTotal}</p>
                             </div>
                         ))}
+                        <h3>Total: ${orden.total}</h3>
+                        {/* Botón para cambiar el estado de la orden */}
+                        {estadoOrdenes[index] === "pendiente" && (
+                            <>
+                                <button className= "botonesR" onClick={() => cambiarEstado(index)}>Orden Realizada</button>
+                                <button className= "botonesC" onClick={() => cancelarOrden(index)}>Orden Cancelada</button>
+                            </>
+                        )}
                     </div>
                 ))}
             </div>

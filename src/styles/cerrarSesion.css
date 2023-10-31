@@ -1,0 +1,27 @@
+/* CerrarSesion.css */
+.cerrarSesion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .cerrarSesion h1, .cerrarSesion h2 {
+    text-align: center;
+  }
+  
+  .cerrarSesion button {
+    margin-top: 20px;
+    padding: 10px 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .cerrarSesion h1, .cerrarSesion h2 {
+      font-size: 18px;
+    }
+  
+    .cerrarSesion button {
+      padding: 5px 10px;
+    }
+  }
