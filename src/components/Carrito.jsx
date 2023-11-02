@@ -82,21 +82,24 @@ function Carrito() {
          
       
       <header className="header-carrito">
-        <button className="boton-carrito" onClick={() => setMostrarCarrito(!mostrarCarrito)}>
+        <button  className="boton-carrito" onClick={() => setMostrarCarrito(!mostrarCarrito)}>
           {mostrarCarrito ? 'Ocultar' : 'Desplegar'} Carrito
         </button>
         {mostrarCarrito && (
           <div className="carrito">
             {carrito.map((alimento, index) => (
               <div key={index} className="item-carrito">
-                <span>{alimento.nombre} x {alimento.cantidad}</span>
-                <span>Subtotal: $ {alimento.precio_subTotal}</span>
-                <button onClick={() => quitarDelCarrito(index)}>
+                {/* <section> */}
+                  <p>{alimento.nombre} x {alimento.cantidad}</p>
+                  <p > $ {alimento.precio_subTotal}</p>
+                {/* </section> */}
+                
+                <button id="btn-confirmar" onClick={() => quitarDelCarrito(index)}>
                   Quitar
                 </button>
               </div>
             ))}
-            <div>Total: $ {carrito.reduce((acc, curr) => acc + curr.precio_subTotal, 0)}</div>
+            <div id='total'>Total: $ {carrito.reduce((acc, curr) => acc + curr.precio_subTotal, 0)}</div>
             <button id="btn-confirmar" onClick={confirmarPedido}>
               Confirmar pedido
             </button>

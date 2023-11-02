@@ -8,6 +8,7 @@ import FireBaseImageUpload from "./FireBaseImageUpload";
 import Carrito from './Carrito';
 import '../styles/car.css';
 
+
 function ConfirmarPedido() {
     const location = useLocation();
     const navigate = useNavigate();
@@ -30,7 +31,6 @@ function ConfirmarPedido() {
         console.error(err);
       }
     };
-  
     const confirmar = async () => {
       pedido.comprobanteImg= parentImgUrl;
       try {
@@ -41,7 +41,6 @@ function ConfirmarPedido() {
         console.error(err);
       }
     };
-  
     return (
         <>
         <div className='cont-confirmar'>
@@ -59,8 +58,6 @@ function ConfirmarPedido() {
                     ))}
                     </section>
                     <h3>Total: ${pedido.total}</h3>
-
-                    
                 </article>
                 <article className='card'>
                     <h2>Realizar Transferencia</h2>
@@ -73,13 +70,11 @@ function ConfirmarPedido() {
                         <h3>Tome una captura de ántalla de su pedido y subala aqui</h3>
                 {/* Aquí se pasa la función para actualizar el estado del componente padre */}
                 <FireBaseImageUpload carpetaNom="pruebaConfirmar" setParentImgUrl={setParentImgUrl}/> 
-
                 {/* El botón Confirmar solo se habilita cuando parentImgUrl está seteado */}
                 <button onClick={confirmar} disabled={!parentImgUrl}>
                     Confirmar 
                     </button>
                     </section>
-
                 </article>
             </section>
         </div>

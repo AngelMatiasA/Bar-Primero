@@ -36,12 +36,13 @@ const App = () => {
                   <Route path="/foto" element={<FirebaseImageUpload />} />
                   <Route path = "/confirmar" element = {<ConfirmarPedido />} />
                   <Route path = "/verificacion" element = {<Verificacion />} />
+                  <Route path = "/cerrar" element = {<CerrarSesion />} />
 
                   
                   <Route path="/ordenBr" element={<OrdenBr />} />
                   <Route path="/storeAdmin" element={<StoreAdmin />} />
                   <Route path="/registro" element={<Registro />} />
-                  <Route path="/cerrar" element={<CerrarSesion />} />
+                  
                   <Route path="/admin" element={<Admin />} />
                 </Routes>
               </Router>

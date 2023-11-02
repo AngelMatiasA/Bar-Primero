@@ -1,183 +1,233 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
 import "../styles/ordenesAdmin.css";
+import axios from "axios";
 
-// async function fetchMenu(setDatos) {
- 
-//     try {
-//       const res = await axios.get('https://www.mytbrendabar.somee.com/api/Ordenes/ObtenerPedidos');
-//       setDatos(res.data.respones);
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }
 
 function OrdenBr() {
-    const [datos, setDatos] = useState([]);
-    const [estadoOrdenes, setEstadoOrdenes] = useState([]);
+
+    const [ordenesPendientes, setOrdenesPendientes] = useState([]);
+    ////////////////////////////////////////////////////////////////////
     const [ordenesRealizadas, setOrdenesRealizadas] = useState([]);
+  
+     
+          const confirmadas = async () => {
+            try {
+              const result = await axios.get(
+                  'https://www.mytbrendabar.somee.com/api/Ordenes/Confirmados'
+              );
+              setOrdenesRealizadas(result.data.respones);
+              //console.log(result.data.respones)
+            } catch (error) {
+              console.error("Error al obtener los datos:", error);
+            }
+          };
+      
+          confirmadas();
+          //console.log(ordenesRealizadas);
+
+          useEffect(() => {
+            confirmadas();
+          }, []);
+       
+    /////////////////////////////////////////////////////////////////////
     const [ordenesCanceladas, setOrdenesCanceladas] = useState([]);
   
-    async function fetchMenu() {
-      try {
-        const res = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/Pendientes');
-        setDatos(res.data.respones);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-    async function fetchMenuConfirmadas() {
-      try {
-        const res = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/Confirmados');
-        setOrdenesRealizadas(res.data.respones);
-      } catch (err) {
-        console.error(err);
-      }
-    }
+    
+          const canceladas = async () => {
+            try {
+              const result = await axios.get(
+                  'https://www.mytbrendabar.somee.com/api/Ordenes/Cancelados'
+              );
+              setOrdenesCanceladas(result.data.respones);
+              //console.log(result.data.respones)
+            } catch (error) {
+              console.error("Error al obtener los datos:", error);
+            }
+          };
+      
+          canceladas();
+          //console.log(ordenesCanceladas);
+       
+
+          useEffect(() => {
+            canceladas();
+          }, []);
+       
+        ////////////////////////////////////////////
   
+   
+    const fetchData = async () => {
+      try {
+        const result = await axios.get(
+          'https://www.mytbrendabar.somee.com/api/Ordenes/Pendientes'
+        );
+        setOrdenesPendientes(result.data.respones);
+        console.log(result.data)
+      } catch (error) {
+        console.error("Error al obtener los datos:", error);
+      }
+    };
+    //////////////////////////////////////////
     useEffect(() => {
-      fetchMenu();
-      fetchMenuConfirmadas();
+      fetchData();
     }, []);
+  
+  ////////////////////////////////////////////////////////
+  async function cambiarEstado(idOrden) {
+      try {
+        const result = await axios.put(
+          `https://www.mytbrendabar.somee.com/api/Ordenes/CambiarEstado?idPedido=${idOrden}&estado=2`
+        );
+        console.log(idOrden)
+        console.log(result.data);
+       
+        // Llama a fetchData() después de cambiar el estado
+        await fetchData();
+        await confirmadas()
+      } catch (error) {
+        console.error("Error al cambiar el estado:", error);
+      }
+    }
+    ///////////////////////////////
+    async function cancelarOrden(idOrden) {
+      try {
+        const result = await axios.put(
+          `https://www.mytbrendabar.somee.com/api/Ordenes/CambiarEstado?idPedido=${idOrden}&estado=3`
+        );
+        console.log(idOrden)
+        console.log(result.data);
+       
+        // Llama a fetchData() después de cambiar el estado
+        await fetchData();
+        await canceladas()
+      } catch (error) {
+        console.error("Error al cambiar el estado:", error);
+      }
+    }
+    
+ 
 
-  const cambiarEstado = (index) => {
-    const nuevosEstados = [...estadoOrdenes];
-    nuevosEstados[index] = "realizada";
-    setEstadoOrdenes(nuevosEstados);
 
-    const nuevasOrdenes = datos.ordenes.filter((orden, i) => i !== index);
-    setDatos({ ...datos, ordenes: nuevasOrdenes });
+  
 
-    const nuevosEstadosFiltrados = nuevosEstados.filter((estado, i) => i !== index);
-    setEstadoOrdenes(nuevosEstadosFiltrados);
-
-    // Llamar a la función para actualizar el estado en el servidor
-  };
-
-  const cancelarOrden = (index) => {
-    const nuevaOrdenCancelada = datos.ordenes[index];
-    setOrdenesCanceladas([...ordenesCanceladas, nuevaOrdenCancelada]);
-
-    const nuevasOrdenes = datos.ordenes.filter((orden, i) => i !== index);
-    setDatos({ ...datos, ordenes: nuevasOrdenes });
-
-    const nuevosEstados = estadoOrdenes.filter((estado, i) => i !== index);
-    setEstadoOrdenes(nuevosEstados);
-
-    // Llamar a la función para actualizar el estado en el servidor
-    actualizarEstadoEnServidor(nuevaOrdenCancelada.idPedido, 3);
-  };
-
-  const actualizarEstadoEnServidor = (idPedido, nuevoEstado) => {
-    const url = `https://www.mytbrendabar.somee.com/api/Ordenes/CambiarEstado?idPedido=${idPedido}&estado=${nuevoEstado}`;
-
-    fetch(url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
-        if (response.status === 200) {
-          console.log('Estado actualizado en el servidor con éxito');
-        } else {
-          console.error('Error al actualizar el estado en el servidor');
-        }
-      })
-      .catch((error) => {
-        console.error('Error en la solicitud:', error);
-      });
-  };
-
-  // Resto de tu código...
 
   return (
     <div className="container">
-        <div className="column">
-            <div className="ordenes-pendientes">
-                <h2>Órdenes pendientes:</h2>
-                {datos && datos && datos.map((orden, index) => (
-                    <div key={orden.idPedido}>
-                        <h4>Cliente: {orden.nombreCliente}</h4>
-                        <p>Estado: {orden.idestado}</p>
-                        <p>Dirección: {orden.direccion}</p>
-                        <p>Celular: {orden.celular}</p>
-                        <p>foto</p>
-                        <img src={orden.comprobanteImg} alt="" />
-                        <h4>Detalles de la orden: </h4>
-                        {orden.alimentos.map((alimento) => (
-                            <div key={alimento.idAlimento}>
-                                <h4>{alimento.nombre}</h4>
-                                <p>Cantidad: {alimento.cantidad}</p>
-                                <p>Precio: ${alimento.precio_subTotal}</p>
-                            </div>
-                        ))}
-                        <h3>Total: ${orden.total}</h3>
-                        {/* Botón para cambiar el estado de la orden */}
-                        {estadoOrdenes[index] === "pendiente" && (
-                            <>
-                                <button className= "botonesR" onClick={() => cambiarEstado(index)}>Orden Realizada</button>
-                                <button className= "botonesC" onClick={() => cancelarOrden(index)}>Orden Cancelada</button>
-                            </>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </div>
+     
+     <div className="column">
+      <div className="ordenes-pendientes">
+        <h2>Órdenes pendientes:</h2>
+        <div className="contenedor-item">
+        {ordenesPendientes
+          .filter((orden) => orden.estado === "pendiente")
+          .map((orden) => (
+            <div key={orden.idPedido}>
+                   <h1>ID-Pedido: {orden.idPedido}</h1>
+              <h4>Cliente: {orden.nombreCliente}</h4>
+              <p>Dirección: {orden.direccion}</p>
+              <p>Celular: {orden.celular}</p>
+              {/* Detalles de la orden */}
+              {orden.alimentos.map((alimento) => (
+                <div key={alimento.idAlimento}>
+                  <h4>{alimento.nombre}</h4>
+                  <p>Cantidad: {alimento.cantidad}</p>
+                  <p>Precio: ${alimento.precio}</p>
+               
+             
+                   </div>
+              ))}
 
-        <div className="column">
-            <div className="ordenes-realizadas">
-                <h2>Órdenes realizadas:</h2>
-                {ordenesRealizadas.map((orden, index) => (
-                    <div key={orden.idPedido}>
-                        <h4>Cliente: {orden.nombreCliente}</h4>
-                        <p>Estado: {orden.idestado}</p>
-                        <p>Dirección: {orden.direccion}</p>
-                        <p>Celular: {orden.celular}</p>
-                        <p>foto</p>
-                        <img src={orden.comprobanteImg} alt="" />
-                        <h4>Detalles de la orden: </h4>
-                        {orden.alimentos.map((alimento) => (
-                            <div key={alimento.idAlimento}>
-                                <h4>{alimento.nombre}</h4>
-                                <p>Cantidad: {alimento.cantidad}</p>
-                                <p>Precio: ${alimento.precio_subTotal}</p>
-                            </div>
-                        ))}
-                        <h3>Total: ${orden.total}</h3>
-                        {/* Botón para cambiar el estado de la orden */}
-                        {estadoOrdenes[index] === "pendiente" && (
-                            <>
-                                <button className= "botonesR" onClick={() => cambiarEstado(index)}>Orden Realizada</button>
-                                <button className= "botonesC" onClick={() => cancelarOrden(index)}>Orden Cancelada</button>
-                            </>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </div>
+{orden.comprobanteImg ? (
+              <img src={orden.comprobanteImg} alt="Comprobante" style={{maxWidth: "250px", maxHeight: "300px"}} />
+            ) : (
+              <p>No hay imagen</p>
+            )}
 
-        <div className="column">
-            <div className="ordenes-canceladas">
-                <h2>Órdenes canceladas:</h2>
-                {ordenesCanceladas.map((orden) => (
-                    <div key={orden.idPedido}>
-                        <h4>Cliente: {orden.nombre}</h4>
-                        <p>Dirección: {orden.direccion}</p>
-                        <p>Celular: {orden.celular}</p>
-                        {/* Detalles de la orden */}
-                        {orden.alimentos.map((alimento) => (
-                            <div key={alimento.idAlimento}>
-                                <h4>{alimento.nombre}</h4>
-                                <p>Cantidad: {alimento.cantidad}</p>
-                                <p>Precio: ${alimento.precio}</p>
-                            </div>
-                        ))}
-                    </div>
-                ))}
+              <>
+                <button
+                  className="botonesR"
+                  onClick={() => cambiarEstado(orden.idPedido)}
+                >
+                  Orden Realizada
+                </button>
+                <button
+                  className="botonesC"
+                  onClick={() => cancelarOrden(orden.idPedido)}
+                >
+                  Orden Cancelada
+                </button>
+              </>
             </div>
-        </div>
-
+          ))}
+          </div>
+      </div>
     </div>
-)}
+    <div className="column">
+    <div className="ordenes-realizadas">
+      <h2>Órdenes realizadas:</h2>
+      <div className="contenedor-item">
+      {ordenesRealizadas.filter(orden => orden.estado === 'realizado').map((orden) => (
+        <div key={orden.idPedido}>
+          <h1>ID-Pedido: {orden.idPedido}</h1>
+          <h4>Cliente: {orden.nombreCliente}</h4>
+          <p>Dirección: {orden.direccion}</p>
+          <p>Celular: {orden.celular}</p>
+          {/* Detalles de la orden */}
+          {orden.alimentos.map((alimento) => (
+            <div key={alimento.idAlimento}>
+              <h4>{alimento.nombre}</h4>
+              <p>Cantidad: {alimento.cantidad}</p>
+              <p>Precio: ${alimento.precio}</p>
+            </div>
+            
+          ))}
+          {orden.comprobanteImg ? (
+              <img src={orden.comprobanteImg} alt="Comprobante" style={{maxWidth: "250px", maxHeight: "300px"}} />
+            ) : (
+              <p>No hay imagen</p>
+            )}
+        </div>
+      ))}
+      </div>
+    </div>
+  </div>
+
+  <div className="column">
+    <div className="ordenes-canceladas">
+      <h2>Órdenes canceladas:</h2>
+      <div className="contenedor-item">
+      {ordenesCanceladas.filter(orden => orden.estado === "cancelado").map((orden) => (
+        <div key={orden.idPedido}>
+            <h1>ID-pedido {orden.idPedido}</h1>
+           <h4>Cliente: {orden.nombreCliente}</h4>
+          <p>Dirección: {orden.direccion}</p>
+          <p>Celular: {orden.celular}</p>
+          {/* Detalles de la orden */}
+          {orden.alimentos.map((alimento) => (
+            <div key={alimento.idAlimento}>
+              <h4>{alimento.nombre}</h4>
+              <p>Cantidad: {alimento.cantidad}</p>
+              <p>Precio: ${alimento.precio}</p>
+            
+            </div>
+          ))}
+          {orden.comprobanteImg ? (
+              <img src={orden.comprobanteImg} alt="Comprobante" style={{maxWidth: "250px", maxHeight: "300px"}} />
+            ) : (
+              <p>No hay imagen</p>
+            )}
+        </div>
+      ))}
+       </div>
+    </div>
+  </div>
+
+
+
+          
+         
+      
+    </div>
+  );
+}
 export default OrdenBr;
