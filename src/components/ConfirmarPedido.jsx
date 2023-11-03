@@ -16,27 +16,39 @@ function ConfirmarPedido() {
     const pedido = location.state.pedido;
     const [parentImgUrl, setParentImgUrl] = useState(''); // Aquí se guarda la URL de la imagen
     const [ultimoIdOrden, setultimoIdOrden] = useState(0);
+    const cookies = new Cookies();
 
-    useEffect(() => {
-      if (parentImgUrl !== '') {
-        fetchUltimoIdOrden();
-      }
-    }, [parentImgUrl]);
 
-    const fetchUltimoIdOrden = async () => {
-      try {
-        const response = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/ultima-orden');
-        setultimoIdOrden(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    // useEffect(() => {
+    //   if (parentImgUrl !== '') {
+    //     fetchUltimoIdOrden();
+    //   }
+    // }, [parentImgUrl]);
+
+    // const fetchUltimoIdOrden = async () => {
+    //   try {
+    //     const response = await axios.get('http://www.mytbrendabar.somee.com/api/Ordenes/ultima-orden');
+    //     setultimoIdOrden(response.data);
+    //   } catch (err) {
+    //     console.error(err);
+    //   }
+    // };
     const confirmar = async () => {
       pedido.comprobanteImg= parentImgUrl;
       try {
-        await axios.post('https://www.mytbrendabar.somee.com/api/Ordenes/Guardar', pedido);
-        alert('Pedido confirmado!');
-        navigate('/verificacion', { state: { pedido, ultimoIdOrden } });
+        const response = await axios.post('https://www.mytbrendabar.somee.com/api/Ordenes/Guardar', pedido);
+        if (response.data.id !== null) {
+          alert('Pedido confirmado!');
+          // Guardar el id en ultimoIdOrden
+          // setUltimoIdOrden(response.data.id);
+          cookies.set('idOrden', response.data.id);
+
+          // Guardar el id en una cookie
+          // document.cookie = `ultimoIdOrden=${response.data.id}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+          navigate('/verificacion', { state: { pedido } });
+        } else {
+          alert('Error: El id del pedido es nulo.');
+        }
       } catch (err) {
         console.error(err);
       }

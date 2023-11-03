@@ -13,8 +13,8 @@ text-align: flex-start;
 
 }
 .loader {
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid rgb(108, 162, 108); /* Light grey */
+    border-top: 16px solid #0ae60a; /* Blue */
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -26,7 +26,7 @@ text-align: flex-start;
     100% { transform: rotate(360deg); }
   }
 .estado-pendiente {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.657);
     color: white;
     display: flex;
     flex-direction: column;

@@ -8,7 +8,7 @@ function FireBaseImageUpload({carpetaNom, setParentImgUrl}){
     const [imgUrl,setImgUrl] =useState([])
 
     const handleClick = async () =>{
-     if(img !==null){
+     if(img != null){
         const imgRef =  ref(imageDb,`${carpetaNom}/${v4()}`)
         const value = await uploadBytes(imgRef,img);
         console.log(value)
@@ -33,7 +33,6 @@ function FireBaseImageUpload({carpetaNom, setParentImgUrl}){
                     imgUrl && <div>
                         <img src={imgUrl} height="200px" width="200px" />
                         <br/> 
-                        <p>{imgUrl}</p>
                     </div>
                 }
              

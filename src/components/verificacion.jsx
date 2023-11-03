@@ -12,13 +12,13 @@ function Verificacion() {
     const pedido = location.state.pedido;
     const ultimoIdOrden = location.state.ultimoIdOrden;
     
-    const [ordenActual, setOrdenActual] = useState(null);
+    const [ordenActual, setOrdenActual] = useState(0);
     const [loading, setLoading] = useState(false);
 
     const fetchOrdenActual = async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://www.mytbrendabar.somee.com/api/Ordenes/OrdenActual?idUltimo=${ultimoIdOrden}&idUsuario=${pedido.idUsuario}`);
+            const response = await axios.get(`https://www.mytbrendabar.somee.com/api/Ordenes/EstadoIdActual?idUsuario=${pedido.idUsuario}`);
             setTimeout(() => {
                 setOrdenActual(response.data);
                 setLoading(false);
@@ -63,10 +63,10 @@ function Verificacion() {
                     ) : (
                         ordenActual && (
                             
-                                <article className={ordenActual.idEstado === 1 ? 'estado-pendiente' : 'estado-confirmado'}>
+                                <article className={ordenActual == 1 ? 'estado-pendiente' : 'estado-confirmado'}>
                                     <h3>Estado del Pedido:</h3>
-                                    <p>{ordenActual.idEstado === 1 ? 'Pendiente' : 'Confirmado'}</p>
-                                    {ordenActual.idEstado === 2 && <span>&#10003;</span>}
+                                    <p>{ordenActual == 1 ? 'Pendiente' : 'Confirmado'}</p>
+                                    {ordenActual == 2 && <span>&#10003;</span>}
                                 </article>
                           
                         )
